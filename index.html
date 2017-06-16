@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+    <!-- ======= ======= ======= head ======= ======= ======= -->
+	<head>
+	    <meta charset="utf-8">
+	    <title>Wheel Of Fortune!</title>
+
+        <!-- == styles == -->
+		<link rel="stylesheet" type="text/css" href="public/styles.css">
+	</head>
+
+
+	<!-- ======= ======= ======= body ======= ======= ======= -->
+
+	<body>
+
+		<h1> <b>WHEEL OF FORTUNE</b> </h1>
+		<img id="logo" src="http://orig01.deviantart.net/2cd6/f/2014/298/f/9/wheel_of_fortune_logo_by_matt490-d845bh6.jpg">
+
+	<div id="game">
+	    <div id="display"></div>
+	    <div id="playArea">
+	        <button id="spin">SPIN</button>
+	        <button id="vowel">BUY VOWEL</button>
+	        <button id="solve">SOLVE PUZZLE</button>
+	        <button id="newpuzzle">START NEW GAME</button>
+			<div id="spinmoney">CURRENT SPIN:</div>
+			<div id="totalmoney">YOUR TOTAL MONEY:</div>
+	        <!-- <div id="moneyArea">Score: $<span id="money">0</span></div> -->
+	    </div>
+		<br>
+		<br>
+		<br>
+		<form id="guess">
+	            Choose a letter:<br>
+	            <input type="text" id="letterguess" name="letterguess" placeholder="No vowels!"><br>
+		</form>
+		<!-- <form id="buyvowel">
+				Guess a vowel:<br>
+				<input type="text" id="vowelguess" name="vowelguess"><br>
+			</form> -->
+		<button id="lettersubmit" value="submit"> SUBMIT </button>
+	</div>
+
+	<div id="puzzlearea">
+	</div>
+
+
+
+		<script type="text/javascript" src="wheeloffortune.js"></script>
+
+	</body>
+</html>

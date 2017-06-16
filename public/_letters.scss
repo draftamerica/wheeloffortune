@@ -1,0 +1,47 @@
+// @for $i from 1 through 4 {
+//     #button-#{$i} { font-size: 12px * $i/2; }
+
+#letter1
+{
+    color: gold;
+    background-color: green;
+}
+#button2
+{
+    color: black;
+    background-color: white;
+}
+#button3
+{
+    color: magenta;
+    background-color: yellow;
+}
+
+// .mainbox {
+//   .wheelbox {
+//     margin: 0;
+//     padding: 0;
+//     list-style: none;
+//   }
+//
+//   li { display: inline-block; }
+//
+//   a {
+//     display: block;
+//     padding: 6px 12px;
+//     text-decoration: none;
+//   }
+// }
+
+// .button#button1.button:hover
+// {
+//     background-color: aqua;
+// }
+// .button#button2.button:hover
+// {
+//     background-color: brown;
+// }
+// .button#button3.button:hover
+// {
+//     background-color: blue;
+// }
