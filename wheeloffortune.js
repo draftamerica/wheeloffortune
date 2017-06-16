@@ -112,12 +112,11 @@ var wheel = {
         var currentLetter = document.getElementById("letterguess").value;
         var currentPuzzleArray = document.getElementsByClassName("letterbox");
         console.log("currentLetter", currentLetter);
-        if (letterType == "consonant") {
-
+        if (wheel.letterType == "consonant") {
+            var vowelFlag = wheel.validateLetter(currentLetter);
+            console.log("wheel.yourGuesses", wheel.yourGuesses);
         }
-        var vowelFlag = wheel.validateLetter(currentLetter);
-        console.log("wheel.yourGuesses", wheel.yourGuesses);
-        if (!vowelFlag) {
+        if ((!vowelFlag) || (wheel.letterType == "vowel")) {
             var alerts = document.getElementById("alerts");
             alerts.innerHTML = " ";
             var pastGuesses = wheel.yourGuesses.indexOf(currentLetter);
@@ -150,7 +149,6 @@ var wheel = {
                 }
             }
         }
-
     },
 
     validateLetter: function(checkVowel) {
@@ -182,6 +180,7 @@ var wheel = {
             document.getElementById("spin").disabled = false;
             document.getElementById("lettersubmit").disabled = false;
             document.getElementById("vowel").disabled = true;
+            wheel.letterType = "vowel";
         }
     },
 
