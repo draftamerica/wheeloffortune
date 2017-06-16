@@ -14,6 +14,7 @@ var wheel = {
     yourMoney: 0,
     newValue: 0,
     newPuzzle: " ",
+    yourGuesses: [],
     // answerCorrect: false;
 
     initialize: function() {
@@ -108,52 +109,39 @@ var wheel = {
         var currentPuzzleArray = document.getElementsByClassName("letterbox");
         console.log("currentLetter", currentLetter);
         var vowelFlag = wheel.validateLetter(currentLetter);
+        console.log("wheel.yourGuesses", wheel.yourGuesses);
         if (!vowelFlag) {
-            for (var i = 0; i < wheel.newPuzzle.length; i++) {
-                console.log("wheel", wheel.newPuzzle[i]);
-                if (currentLetter == wheel.newPuzzle[i]) {
-                    currentPuzzleArray[i].innerHTML = wheel.newPuzzle[i];
-                    wheel.yourMoney = parseInt(wheel.newValue) + parseInt(wheel.yourMoney);
+            var alerts = document.getElementById("alerts");
+            alerts.innerHTML = " ";
+            var pastGuesses = wheel.yourGuesses.indexOf(currentLetter);
+            console.log("pastGuesses", pastGuesses);
+            wheel.yourGuesses.push(currentLetter);
+            if (pastGuesses > -1) {
+                alert("Lose turn");
+            } else {
+                for (var i = 0; i < wheel.newPuzzle.length; i++) {
+                    console.log("wheel", wheel.newPuzzle[i]);
+                    if (currentLetter == wheel.newPuzzle[i]) {
+                        currentPuzzleArray[i].innerHTML = wheel.newPuzzle[i];
+                        wheel.yourMoney = parseInt(wheel.newValue) + parseInt(wheel.yourMoney);
+                        var currentTotal = document.getElementById("totalmoney");
+                        guessState = true;
+                        currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
+                        console.log("wheel.yourMoney", wheel.yourMoney);
+                    }
+                }
+                console.log("guessState", guessState);
+                if (guessState == false) {
                     var currentTotal = document.getElementById("totalmoney");
-                    guessState = true;
+                    wheel.yourMoney = parseInt(wheel.yourMoney) - parseInt(wheel.newValue);
                     currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
-                    console.log("wheel.yourMoney", wheel.yourMoney);
+                } else {
+                    var alerts = document.getElementById("alerts");
+                    alerts.innerHTML = "You must enter a consonant";
                 }
             }
-            console.log("guessState", guessState);
-            if (guessState == false) {
-                var currentTotal = document.getElementById("totalmoney");
-                wheel.yourMoney = parseInt(wheel.yourMoney) - parseInt(wheel.newValue);
-                currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
-            }
-        } else {
-            var alerts = document.getElementById("alerts");
-            alerts.innerHTML = "You must enter a consonant";
         }
-        // var alerts = document.getElementById("alerts");
-        // switch(currentLetter) {
-        //     case "":
-        //         alerts.innerHTML = "You must enter at least one letter. Please spin again.";
-        //         document.getElementById("lettersubmit").disabled = true;
-        //         break;
-        //     case "A":
-        //         alerts.innerHTML = "You must enter a consonant";
-        //         break;
-        //     case "E":
-        //         alerts.innerHTML = "You must enter a consonant";
-        //         break;
-        //     case "I":
-        //         alerts.innerHTML = "You must enter a consonant";
-        //         break;
-        //     case "O":
-        //         alerts.innerHTML = "You must enter a consonant";
-        //         break;
-        //     case "U":
-        //         alerts.innerHTML = "You must enter a consonant";
-        //         break;
-        //     default:
-        //         alerts.innerHTML = " ";
-        // }
+
     },
 
     validateLetter: function(checkVowel) {
