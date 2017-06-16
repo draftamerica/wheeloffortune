@@ -5,11 +5,13 @@ h1
 }
 #logo
 {
-    position: relative;
-    top: -25px;
-    left: 250px;
-    height: 90px;
-    width: 400px;
+    position: absolute;
+    height: auto;
+    width: 100%;
+    top: -40px;
+    left: -30px;
+    z-index: -1;
+    opacity: 0.5;
 }
 .puzzlearea
 {
@@ -81,6 +83,42 @@ h1
     border: 2px solid green;
     padding: 1px;
     background-color: yellow;
+}
+#spin
+{
+    height: 40px;
+    width: 100px;
+    background-color: gold;
+    border: 2px solid black;
+    color: brown;
+    text-shadow: 3px 3px 3px aqua;
+}
+#vowel
+{
+    height: 40px;
+    width: 100px;
+    background-color: gold;
+    border: 2px solid black;
+    color: brown;
+    text-shadow: 3px 3px 3px aqua;
+}
+#solve
+{
+    height: 40px;
+    width: 100px;
+    background-color: gold;
+    border: 2px solid black;
+    color: brown;
+    text-shadow: 3px 3px 3px aqua;
+}
+#newpuzzle
+{
+    height: 40px;
+    width: 100px;
+    background-color: gold;
+    border: 2px solid black;
+    color: brown;
+    text-shadow: 3px 3px 3px aqua;
 }
 
 

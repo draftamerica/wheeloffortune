@@ -15,7 +15,7 @@ var wheel = {
     newValue: 0,
     newPuzzle: " ",
     yourGuesses: [],
-    // answerCorrect: false;
+    letterType: "consonant",
 
     initialize: function() {
         console.log("==initialize==");
@@ -41,16 +41,21 @@ var wheel = {
         var currentSpinValue = document.getElementById("spinmoney");
         console.log("currentSpinValue", currentSpinValue);
         currentSpinValue.innerHTML = "CURRENT SPIN: " + "$" + newCardValue;
+        document.getElementById("vowel").disabled = false;
         if ((newCardValue == "Bankrupt")) {
             wheel.yourMoney = 0;
             var currentTotal = document.getElementById("totalmoney");
             currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
             console.log("wheel.yourMoney", wheel.yourMoney);
             document.getElementById("lettersubmit").disabled = true;
+            document.getElementById("spin").disabled = false;
         } else {
             var guessLetter = document.getElementById("lettersubmit");
             guessLetter.addEventListener("click", wheel.guessLetter);
             document.getElementById("lettersubmit").disabled = false;
+            document.getElementById("spin").disabled = false;
+            var vowelBtn = document.getElementById("vowel");
+            vowelBtn.addEventListener("click", wheel.buyVowel);
         }
         // var updateTotal = parseInt(wheel.yourMoney) + parseInt(newCardValue);
         // console.log("updateTotal", updateTotal);
@@ -84,7 +89,6 @@ var wheel = {
     generatePuzzle: function() {
         console.log("==generatePuzzle==");
         wheel.activateSpin();
-        // newGm.addEventListener("click", wheel.generatePuzzle);
         document.getElementById("puzzlearea").innerHTML = " ";
         wheel.newPuzzle = wheel.puzzleArray[Math.floor(Math.random() * wheel.puzzleArray.length)];
         console.log("newPuzzle", wheel.newPuzzle);
@@ -108,6 +112,9 @@ var wheel = {
         var currentLetter = document.getElementById("letterguess").value;
         var currentPuzzleArray = document.getElementsByClassName("letterbox");
         console.log("currentLetter", currentLetter);
+        if (letterType == "consonant") {
+
+        }
         var vowelFlag = wheel.validateLetter(currentLetter);
         console.log("wheel.yourGuesses", wheel.yourGuesses);
         if (!vowelFlag) {
@@ -116,6 +123,8 @@ var wheel = {
             var pastGuesses = wheel.yourGuesses.indexOf(currentLetter);
             console.log("pastGuesses", pastGuesses);
             wheel.yourGuesses.push(currentLetter);
+            document.getElementById("spin").disabled = false;
+            document.getElementById("lettersubmit").disabled = true;
             if (pastGuesses > -1) {
                 alert("Lose turn");
             } else {
@@ -137,7 +146,7 @@ var wheel = {
                     currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
                 } else {
                     var alerts = document.getElementById("alerts");
-                    alerts.innerHTML = "You must enter a consonant";
+                    alerts.innerHTML = " ";
                 }
             }
         }
@@ -146,6 +155,8 @@ var wheel = {
 
     validateLetter: function(checkVowel) {
         console.log("==validateLetter==");
+        var alerts = document.getElementById("alerts");
+        alerts.innerHTML = "You must enter a consonant since you didn't buy a vowel!";
         var vowelString = "AEIOU";
         var stringIndex = vowelString.indexOf(checkVowel);
         console.log("stringIndex", stringIndex);
@@ -158,9 +169,25 @@ var wheel = {
 
     buyVowel: function() {
         console.log("==buyVowel==");
-        var vowelBtn = document.getElementById("vowel");
-        vowelBtn.addEventListener("click", wheel.yourMoney);
+        console.log("wheel.yourMoney", wheel.yourMoney);
+        if (wheel.yourMoney < 200) {
+                alert("You do not have enough $ to buy a vowel!");
+                document.getElementById("spin").disabled = true;
+                document.getElementById("lettersubmit").disabled = true;
+                document.getElementById("vowel").disabled = false;
+        } else {
+            wheel.yourMoney = (wheel.yourMoney - 200);
+            var currentTotal = document.getElementById("totalmoney");
+            currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
+            document.getElementById("spin").disabled = false;
+            document.getElementById("lettersubmit").disabled = false;
+            document.getElementById("vowel").disabled = true;
+        }
     },
+
+    // removeVowelMoney: function() {
+    //     console.log("==removeVowelMoney==");
+    // },
 
     generateLetter: function() {
         console.log("==generateLetter==");
