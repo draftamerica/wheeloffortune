@@ -107,30 +107,71 @@ var wheel = {
         var currentLetter = document.getElementById("letterguess").value;
         var currentPuzzleArray = document.getElementsByClassName("letterbox");
         console.log("currentLetter", currentLetter);
-        for (var i = 0; i < wheel.newPuzzle.length; i++) {
-            console.log("wheel", wheel.newPuzzle[i]);
-            if (currentLetter == wheel.newPuzzle[i]) {
-                currentPuzzleArray[i].innerHTML = wheel.newPuzzle[i];
-                wheel.yourMoney = parseInt(wheel.newValue) + parseInt(wheel.yourMoney);
-                var currentTotal = document.getElementById("totalmoney");
-                guessState = true;
-                currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
-                console.log("wheel.yourMoney", wheel.yourMoney);
+        var vowelFlag = wheel.validateLetter(currentLetter);
+        if (!vowelFlag) {
+            for (var i = 0; i < wheel.newPuzzle.length; i++) {
+                console.log("wheel", wheel.newPuzzle[i]);
+                if (currentLetter == wheel.newPuzzle[i]) {
+                    currentPuzzleArray[i].innerHTML = wheel.newPuzzle[i];
+                    wheel.yourMoney = parseInt(wheel.newValue) + parseInt(wheel.yourMoney);
+                    var currentTotal = document.getElementById("totalmoney");
+                    guessState = true;
+                    currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
+                    console.log("wheel.yourMoney", wheel.yourMoney);
+                }
             }
+            console.log("guessState", guessState);
+            if (guessState == false) {
+                var currentTotal = document.getElementById("totalmoney");
+                wheel.yourMoney = parseInt(wheel.yourMoney) - parseInt(wheel.newValue);
+                currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
+            }
+        } else {
+            var alerts = document.getElementById("alerts");
+            alerts.innerHTML = "You must enter a consonant";
         }
-        console.log("guessState", guessState);
-        if (guessState == false) {
-            var currentTotal = document.getElementById("totalmoney");
-            wheel.yourMoney = parseInt(wheel.yourMoney) - parseInt(wheel.newValue);
-            currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
+        // var alerts = document.getElementById("alerts");
+        // switch(currentLetter) {
+        //     case "":
+        //         alerts.innerHTML = "You must enter at least one letter. Please spin again.";
+        //         document.getElementById("lettersubmit").disabled = true;
+        //         break;
+        //     case "A":
+        //         alerts.innerHTML = "You must enter a consonant";
+        //         break;
+        //     case "E":
+        //         alerts.innerHTML = "You must enter a consonant";
+        //         break;
+        //     case "I":
+        //         alerts.innerHTML = "You must enter a consonant";
+        //         break;
+        //     case "O":
+        //         alerts.innerHTML = "You must enter a consonant";
+        //         break;
+        //     case "U":
+        //         alerts.innerHTML = "You must enter a consonant";
+        //         break;
+        //     default:
+        //         alerts.innerHTML = " ";
+        // }
+    },
+
+    validateLetter: function(checkVowel) {
+        console.log("==validateLetter==");
+        var vowelString = "AEIOU";
+        var stringIndex = vowelString.indexOf(checkVowel);
+        console.log("stringIndex", stringIndex);
+        if (stringIndex > -1) {
+            return true;
+        } else {
+            return false;
         }
     },
 
     buyVowel: function() {
         console.log("==buyVowel==");
         var vowelBtn = document.getElementById("vowel");
-        vowelBtn.addEventListener("click", wheel.guessLetter);
-
+        vowelBtn.addEventListener("click", wheel.yourMoney);
     },
 
     generateLetter: function() {
