@@ -7,52 +7,71 @@ h1
 {
     position: absolute;
     height: auto;
-    width: 100%;
+    width: 1300px;
     top: -40px;
     left: -30px;
-    z-index: -1;
-    opacity: 0.5;
+    z-index: -2;
+    opacity: 0.2;
 }
-.puzzlearea
+#alerts
 {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    height: 800px;
-    width: 800px;
-    margin: 5px;
-    border: 2px solid black;
+    position: absolute;
+    top: 60px;
 }
-/*.letterbox
+#guessvalid
 {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    float: left;
-    height: 50px;
-    width: 50px;
-    top: 20px;
-    margin: 5px;
-    padding: 10px;
-    border: 2px solid black;
-    color: yellow;
-    background-color: yellow;
-}*/
+    position: absolute;
+    height: 40px;
+    width: 100%;
+    top: 40px;
+    color: blue;
+}
+#puzzlearea
+{
+    overflow-x: auto;
+    white-space: nowrap;
+}
 .letterbox
 {
-    float: left;
-    /*display: flex;
-    flex-direction: wrap;*/
+    display: inline-block;
+    box-sizing: border-box;
     position: relative;
-    width: 70px;
+    width: 80px;
     height: 70px;
-    border: 1px solid black;
+    border: 4px solid black;
+    background-color: yellow;
     color: blue;
-    margin: 2px;
+    margin: 4px;
     padding: 2px;
+    font-size: 30px;
     text-align: center;
-    line-height: 70px;
+    line-height: 50px;
+    opacity: 1;
 }
+.letterbox:hover
+{
+    background-color: green;
+}
+#spin:hover
+{
+    background-color: blue;
+}
+#vowel:hover
+{
+    background-color: blue;
+}
+#solve:hover
+{
+    background-color: blue;
+}
+#newpuzzle:hover
+{
+    background-color: blue;
+}
+/*.space
+{
+    opacity: 0;
+}*/
 #blankbox
 {
     float: left;
@@ -86,153 +105,120 @@ h1
 }
 #spin
 {
-    height: 40px;
+    position: relative;
+    top: 7px;
+    left: 300px;
+    height: 50px;
     width: 100px;
     background-color: gold;
     border: 2px solid black;
     color: brown;
-    text-shadow: 3px 3px 3px aqua;
+    font-size: 15px;
+    text-shadow: 1px 1px 1px aqua;
 }
 #vowel
 {
-    height: 40px;
+    position: relative;
+    left: 375px;
+    margin: 5px;
+    padding: 5px;
+    height: 50px;
     width: 100px;
     background-color: gold;
     border: 2px solid black;
     color: brown;
-    text-shadow: 3px 3px 3px aqua;
+    font-size: 15px;
+    text-shadow: 1px 1px 1px aqua;
 }
 #solve
 {
-    height: 40px;
+    position: relative;
+    left: 450px;
+    height: 50px;
     width: 100px;
     background-color: gold;
     border: 2px solid black;
     color: brown;
-    text-shadow: 3px 3px 3px aqua;
+    font-size: 15px;
+    text-shadow: 1px 1px 1px aqua;
 }
 #newpuzzle
 {
-    height: 40px;
+    position: relative;
+    left: 525px;
+    height: 50px;
     width: 100px;
     background-color: gold;
     border: 2px solid black;
     color: brown;
-    text-shadow: 3px 3px 3px aqua;
+    font-size: 15px;
+    text-shadow: 1px 1px 1px aqua;
 }
-
-
-/*#wheel  {
-    top: 0;
-    left: 0;
-    width: 500px;
-    -moz-border-radius: 250px;
-    -webkit-border-radius: 250px;
-    border-radius: 250px;
-    -webkit-transition: -webkit-transform 0.5s linear;
-    -moz-transition: -moz-transform 0.5s linear;
-    -opera-transition: -opera-transform 0.5s linear;
-    -ms-transition: transform 0.5s linear;
-}
-
-#tick {
-    margin-left: 244px;
-    font-family: Arial;
-    font-size: 14pt;
-}
-
-#display {
-     background-color: #43759f;
-     padding: 1em 2em;
-     text-align: center;
-     border-radius: 40px;
-     border: 4px double #fff;
-}
-#display div.word {
-    display: inline-block;
-}
-#display div.wordLetter {
-    display: block;
-    width: 50px;
-    height: 65px;
-    margin: 2px;
-    border: 2px solid #43759f;
+#spinmoney
+{
+    height: auto;
+    width: 100%;
+    background-color: orange;
+    font-size: 38px;
+    font-family: Georgia serif;
+    text-align: center;
+    letter-spacing: 0.4em;
     float: left;
-    line-height: 65px;
-    font-size: 40px;
 }
-
-#display div.wordLetter.letter {
-    border-color: #eee;
+#totalmoney
+{
+    position: absolute;
+    top: 550px;
+    height: 40px;
+    width: 100%;
+    background-color: aqua;
+    font-size: 16px;
+    font-family: Arial, serif;
+    text-align: center;
+    line-height: 50px;
 }
-#playArea {
-    clear: both;
-}
-#playArea button {
-    text-transform: uppercase;
-    z-index: 1000;
-    border: 4px double #fff;
-    background-color: #43759f;
-    padding: 6px 14px;
-    color: white;
-    font-family: inherit;
-    font-size: 12pt;
-}
-#playArea #moneyArea {
-    float: right;
+#letterguess
+{
     position: relative;
-    padding: 10px;
-    border: 2px black solid;
-    width: 200px;
-    margin: 5px;
-    font-size: 14pt;
+    align: center;
+    left: 500px;
+    height: 50px;
+    width: 245px;
+    background-color: white;
+    font-size: 13px;
 }
-#playArea #moneyArea #money {
+#lettersubmit
+{
+    position: relative;
+    align: center;
+    left: 500px;
+    height: 50px;
+    width: 250px;
+    background-color: grey;
+    font-size: 16px;
 }
-
-.clear {
-    clear: both;
-}*/
-
-
-/*}
-.mainbox
+@keyframes spin
 {
-height: 100px;
-width: 100%;
-display: flex;
-flex-direction: row;
-background-color: lightgrey;
+    from { transform: rotate(0); }
+    to { transform: rotate(1800deg); }
 }
-.mainbox2
+#wheelarea
 {
-height: 100px;
-width: 100%;
-display: flex;
-flex-direction: row;
-background-color: lightgrey;
+    position: absolute;
+    top: 190px;
+    right: 0;
+    width: 350px;
+    height: 350px;
+    background-color: white;
+    overflow: hidden;
 }
-.wheelbox
+#wheelspin
 {
-    /*display: flex;
-    flex-direction: row;*/
-    /*position: relative;
-    float: left;
-    height: 100px;
-    width: 100px;
-    margin: 15px;
-    border: 7px solid black;*/
-/*}
-.wheelbox2
+    position: static;
+    width: 350px;
+    height: 350px;
+}
+.spin
 {
-    /*display: flex;
-    flex-direction: row;*/
-    /*position: relative;
-    float: left;
-    height: 100px;
-    width: 100px;
-    top: 20px;
-    margin: 35px;
-    padding: 20px;
-    border: 7px solid black;
+    animation: spin 4s;
 }

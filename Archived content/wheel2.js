@@ -23,7 +23,7 @@ var wheel = {
         console.log("==initialize==");
         var newPuzzleBtn = document.getElementById("newpuzzle");
         newPuzzleBtn.addEventListener("click", wheel.generatePuzzle);
-        //GET PLAYER NAME
+        //Get player name
         wheel.playerName = prompt("Please enter your name to begin playing");
         while (!wheel.playerName || wheel.playerName.trim() === "") {
         	wheel.playerName = prompt("Please enter your name to begin playing");
@@ -44,7 +44,7 @@ var wheel = {
     },
 
     generateCard: function() { //spinner
-      	//remove message from #guessvalid
+        //remove message from #guessvalid
       	document.querySelector("#guessvalid").textContent = "";
         console.log("==generateCard==");
         var newCardValue = wheel.cards[Math.floor(Math.random() * wheel.cards.length)];
@@ -83,12 +83,19 @@ var wheel = {
         for (var i = 0; i < wheel.newPuzzle.length; i++) {
             var puzzleLetter = wheel.newPuzzle[i];
             var puzzleDiv = document.createElement("div");
-            puzzleDiv.setAttribute("class", "letterbox");
+            //HIDE SPACES
+            // if (wheel.newPuzzle[i] === " ") {
+            //     puzzleDiv.setAttribute("class", "letterbox space");
+            //     //in CSS: .space { opacity: 0; }
+            // } else {
+                puzzleDiv.setAttribute("class", "letterbox");
+            // }
             puzzleDiv.setAttribute("id", "letter_" + i);
-            if (wheel.newPuzzle[i] === " ") {
+            // console.log("puzzleDiv", puzzleDiv);
+            if (wheel.newPuzzle[i] === " "){
               	puzzleArea.appendChild(document.createElement("br"));
             } else {
-                puzzleDiv.innerHTML = "&nbsp;";
+              	puzzleDiv.innerHTML = "&nbsp;";
             	puzzleArea.appendChild(puzzleDiv);
             }
         }
@@ -108,6 +115,9 @@ var wheel = {
         if ((!vowelFlag) || (wheel.letterType == "vowel")) {
             var alerts = document.getElementById("alerts");
             alerts.innerHTML = " ";
+            // var currentTotal = document.getElementById("totalmoney");
+            // currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
+            // // wheel.yourMoney = (wheel.yourMoney - 0);
             var pastGuesses = wheel.yourGuesses.indexOf(currentLetter);
             console.log("pastGuesses", pastGuesses);
             wheel.yourGuesses.push(currentLetter);
@@ -120,7 +130,7 @@ var wheel = {
                     console.log("wheel", wheel.newPuzzle[i]);
                 if (currentLetter == wheel.newPuzzle[i]) {
                     currentPuzzleArray[i].innerHTML = wheel.newPuzzle[i];
-                    //ONLY CHANGES MONEY VALUE IF GUESS WAS A CONSONANT
+//ONLY CHANGES MONEY VALUE IF GUESS WAS A CONSONANT
                     if (wheel.letterType !== "vowel"){
                     	wheel.yourMoney = parseInt(wheel.newValue) + parseInt(wheel.yourMoney);
                     	var currentTotal = document.getElementById("totalmoney");
@@ -142,7 +152,7 @@ var wheel = {
                     }
                 }
             } else {
-                //SUCCESSFUL GUESS. IF IT'S A VOWEL, ALLOW ANOTHER PURCHASE
+                //Successful guess... if it's a vowel, allow another purchase
                 if (wheel.letterType === "vowel") {
                     document.getElementById("vowel").disabled = false;
                 }
@@ -192,17 +202,21 @@ var wheel = {
       if (solveGuess.toUpperCase() === wheel.newPuzzle) {
           //WIN CONDITION FOR CORRECT GUESS
           alert("Way to go! You did it!");
-          //SHOW ALL LETTERS AFTER CORRECT SOLVE GUESS
-          var divs = document.querySelectorAll(".letterbox"); //GET ALL LETTERBOXES
+          //SHOW ALL LETTERS
+          var divs = document.querySelectorAll(".letterbox"); //get all letterboxes
           for (var i=0; i<divs.length; i++){
-          	  var index = parseInt(divs[i].id.replace("letter_", ""), 10); //GET NUMBER FROM END OF ID
-              divs[i].textContent = wheel.newPuzzle.charAt(index); //PUT LETTER FROM SOLUTION INSIDE DIV
+          	  var index = parseInt(divs[i].id.replace("letter_", ""), 10); //get number at end of id
+              divs[i].textContent = wheel.newPuzzle.charAt(index); //put letter from solution into div
           }
       } else {
         //INCORRECT GUESS CONDITION
-        alert("Incorrect guess");
-        }
+        alert("Incorrect");
+      }
     },
+
+    // removeVowelMoney: function() {
+    //     console.log("==removeVowelMoney==");
+    // },
 
     generateLetter: function() {
         console.log("==generateLetter==");
