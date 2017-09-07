@@ -642,3 +642,18 @@ var wheel = {
 // /end if
 
 }
+
+
+//FOR WHEN YOU GET ALL THE LETTERS
+var str1 = '';
+for(var i = 0; i < currentPuzzleArray.length; i++){
+    str1 += currentPuzzleArray[i];
+}
+var str2 = '';
+for(var i = 0; i < wheel.newPuzzle.length; i++){
+    str2 += wheel.newPuzzle[i];
+}
+if(str1 == str2){
+    alert('Hey you win!');
+    wheel.initialize();
+}
