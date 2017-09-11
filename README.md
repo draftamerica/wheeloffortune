@@ -8,11 +8,17 @@ As the bulk of this project was done using Javascript, here is a portion of one 
 
 generatePuzzle: function() {
         console.log("==generatePuzzle==");
+        
         wheel.activateSpin();
+        
         wheel.yourMoney = 0;
+        
         var currentTotal = document.getElementById("totalmoney");
+        
         currentTotal.innerHTML = "";
+        
         document.getElementById("puzzlearea").innerHTML = " ";
+        
         wheel.newPuzzle = wheel.puzzleArray[Math.floor(Math.random() * wheel.puzzleArray.length)];
         
 # Deployment
