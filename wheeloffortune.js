@@ -174,7 +174,7 @@ var wheel = {
             wheel.yourMoney = Math.max(parseInt(wheel.yourMoney) - parseInt(wheel.newValue), 0);
             currentTotal.innerHTML = "YOUR TOTAL MONEY: " + "$" + wheel.yourMoney;
             var currentGuess = document.getElementById("guessvalid");
-            currentGuess.innerHTML = "There are no " + currentLetter + "'s. Please spin again";
+            currentGuess.innerHTML = "There are none of those. Please spin again";
             document.getElementById("letterguess").value = "";
         }
         wheel.letterType = "consonant";
